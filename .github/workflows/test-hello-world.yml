@@ -1,0 +1,24 @@
+name: Test Hello World
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push, pull_request]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+
+      - name: Checkout repository
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Run helloWorld.js
+        run: node helloWorld.js
+
+      - name: Verify output
+        run: |
+        output=$(node helloWorld.js)
+        if [ "$output" != "Hello World!" ]; then
+          echo "Test failed: Expected 'Hello World!', got '$output'"
+          exit 1
+        fi
