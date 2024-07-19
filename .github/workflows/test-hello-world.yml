@@ -8,6 +8,9 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
 
       - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "14"
@@ -17,8 +20,8 @@ jobs:
 
       - name: Verify output
         run: |
-        output=$(node helloWorld.js)
-        if [ "$output" != "Hello World!" ]; then
-          echo "Test failed: Expected 'Hello World!', got '$output'"
-          exit 1
-        fi
+          output=$(node helloWorld.js)
+          if [ "$output" != "Hello World!" ]; then
+            echo "Test failed: Expected 'Hello World!', got '$output'"
+            exit 1
+          fi
